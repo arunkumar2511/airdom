@@ -12,7 +12,7 @@ import os
 accountKey = "1sGIu7VLKqhmRc2bjRPXuLcE1Zy21iZQK2Cf51DKPBCn2yf+151vzsMm7wS0Wdp9IGwZXKKP5+q1+ASt7wCKmQ==" """
 accountName = os.getenv("accountName")
 accountKey = os.getenv("accountKey")
-containerName = "containerarun"
+containerName = os.getenv("containerName")
 connectionString = f"DefaultEndpointsProtocol=https;AccountName={accountName};AccountKey={accountKey};EndpointSuffix=core.windows.net"   
 app = FastAPI()
 origins = [
