@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from datetime import datetime
 from bson import ObjectId
 from azure.storage.blob import BlobClient,generate_blob_sas
+import os
 
 accountName = os.getenv("accountName")
 accountKey = os.getenv("accountKey")
