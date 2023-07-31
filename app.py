@@ -4,10 +4,6 @@ import os
 
 from mainApp.router import router
  
-accountName = os.getenv("accountName")
-accountKey = os.getenv("accountKey")
-containerName = os.getenv("containerName")
-connectionString = f"DefaultEndpointsProtocol=https;AccountName={accountName};AccountKey={accountKey};EndpointSuffix=core.windows.net"   
 app = FastAPI()
 origins = [
     "http://localhost",

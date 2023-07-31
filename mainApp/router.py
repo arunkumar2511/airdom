@@ -1,12 +1,14 @@
-from fastapi import FastAPI, UploadFile,APIRouter
-from typing import Union
+from fastapi import UploadFile,APIRouter
 from pydantic import BaseModel
 from pymongo import MongoClient
-from datetime import datetime,timedelta
+from datetime import datetime
 from bson import ObjectId
-from fastapi.middleware.cors import CORSMiddleware
-from azure.storage.blob import BlobClient,generate_blob_sas,BlobProperties
+from azure.storage.blob import BlobClient,generate_blob_sas
 
+accountName = os.getenv("accountName")
+accountKey = os.getenv("accountKey")
+containerName = os.getenv("containerName")
+connectionString = f"DefaultEndpointsProtocol=https;AccountName={accountName};AccountKey={accountKey};EndpointSuffix=core.windows.net"   
 router = APIRouter()
 myclient = MongoClient("mongodb+srv://arunkumardev2511:ag0x27igJALeaPr4@cluster0.mirxmsy.mongodb.net/?retryWrites=true&w=majority")
 mydb = myclient["qapp"]
