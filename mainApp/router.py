@@ -171,6 +171,16 @@ def getSite(page:int = 1, limit:int = 10, token: str = Depends(tokenAuthScheme))
         el["_id"] = str(el["_id"])
     return {"success":True,"data":data}
 
+@router.get("/site/user-mapped/{id}",tags=["Site"])
+def getSite(id:str, token: str = Depends(tokenAuthScheme)):
+    verifyToken(token.credentials)  
+    data = userTable.find({"isAdmin":False},{"_id":1,"name":1})
+    followData = userTable.find({"isAdmin":False,"sites":id},{"_id":1})
+    followIds = [el["_id"] for el in followData]
+    for el in data:
+        data["isMapped"] = el["_id"] in followIds
+    return {"success":True,"data":data}
+
 @router.post("/site/user-mapping",tags=["Site"])
 def userSiteMapping(site:SiteMapping, token: str = Depends(tokenAuthScheme)):
     userData = verifyToken(token.credentials)
