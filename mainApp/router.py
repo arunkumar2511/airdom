@@ -198,7 +198,8 @@ def userSiteMapping(site:SiteMapping, token: str = Depends(tokenAuthScheme)):
             "updatedBy": userData.get("_id")
         }
     } 
-    userTable.update_many({"_id":{"$in":site.userIds}},dataToUpdate)
+    userIds = [ObjectId(el) for el in site.userIds] 
+    userTable.update_many({"_id":{"$in":userIds}},dataToUpdate) 
     return {"success":True,"data":"Site Mapping Success"}
 
 @router.post("/qn-ans",tags=["QA"])
