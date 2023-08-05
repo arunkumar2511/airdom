@@ -109,7 +109,7 @@ def getUser(page:int = 1, limit:int = 10, token: str = Depends(tokenAuthScheme))
 @router.put("/user/{id}",tags=["User"])
 def editUser(id:str,user:User, token: str = Depends(tokenAuthScheme)):
     userData = verifyToken(token)
-    checkExist = dict(userTable.find_one({"_id":{"$ne":ObjectId(id)},"$or":[{"mobile":user.mobile},{"email":user.email}]}))
+    checkExist = userTable.find_one({"_id":{"$ne":ObjectId(id)},"$or":[{"mobile":user.mobile},{"email":user.email}]})
     if checkExist:
         raise HTTPException(status_code=422,detail="Email or Mobile already exist")
     dataToInsert = {
@@ -206,9 +206,10 @@ def userSiteMapping(site:SiteMapping, token: str = Depends(tokenAuthScheme)):
 def addQans(body:dict, token: str = Depends(tokenAuthScheme)): 
     userData = verifyToken(token)
     body["createdBy"] = userData.get("_id")
+    body["updatedBy"] = userData.get("_id")
     body["isActive"]= True
     body["createdAt"]= datetime.now()
-    siteTable.insert_one(body)
+    questionAnswersTable.insert_one(body)
     return {"success":True,"data":"Answer Creation Success"}
 
 @router.get("/qn-ans",tags=["QA"])
@@ -219,6 +220,8 @@ def getQuestionAnswer(page:int = 1, limit:int = 10, token: str = Depends(tokenAu
     data = list(questionAnswersTable.find({"isActive":True}).limit(limit).skip(skip)) 
     for el in data:
         el["_id"] = str(el["_id"])
+        el["createdBy"] = str(el["createdBy"])  
+        el["updatedBy"] = str(el["updatedBy"]) 
     return {"success":True,"data":data}
 
 @router.get("/qn-ans/{id}",tags=["QA"])
