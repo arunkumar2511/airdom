@@ -19,8 +19,8 @@ accountKey = os.getenv("accountKey")
 containerName = os.getenv("containerName")
 connectionString = f"DefaultEndpointsProtocol=https;AccountName={accountName};AccountKey={accountKey};EndpointSuffix=core.windows.net"   
 router = APIRouter()
-myclient = MongoClient("mongodb+srv://arunkumardev2511:ag0x27igJALeaPr4@cluster0.mirxmsy.mongodb.net/")
-#myclient = MongoClient("mongodb://admin:admin123@104.211.247.221:27017/")
+#myclient = MongoClient("mongodb+srv://arunkumardev2511:ag0x27igJALeaPr4@cluster0.mirxmsy.mongodb.net/")
+myclient = MongoClient("mongodb://admin:admin123@104.211.247.221:27017/")
 mydb = myclient["qapp"]
 userTable = mydb["User"]
 siteTable = mydb["Site"]
