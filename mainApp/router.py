@@ -1,11 +1,15 @@
-from fastapi import UploadFile,APIRouter,HTTPException,Request,Depends
+from fastapi import UploadFile,APIRouter,HTTPException,Request,Depends,File
 from fastapi.security import HTTPBearer
 from pydantic import BaseModel
 from pymongo import MongoClient
 from datetime import datetime
 from bson import ObjectId
 from azure.storage.blob import BlobClient,generate_blob_sas
+from fastapi.encoders import jsonable_encoder
 import os
+import pdfkit
+from jinja2 import Environment, FileSystemLoader
+from starlette.responses import FileResponse
  
 from .utils.jwtHandler import JWT 
 
@@ -15,8 +19,8 @@ accountKey = os.getenv("accountKey")
 containerName = os.getenv("containerName")
 connectionString = f"DefaultEndpointsProtocol=https;AccountName={accountName};AccountKey={accountKey};EndpointSuffix=core.windows.net"   
 router = APIRouter()
-#myclient = MongoClient("mongodb+srv://arunkumardev2511:ag0x27igJALeaPr4@cluster0.mirxmsy.mongodb.net/")
-myclient = MongoClient("mongodb://admin:admin123@127.0.0.1:27017/")
+myclient = MongoClient("mongodb+srv://arunkumardev2511:ag0x27igJALeaPr4@cluster0.mirxmsy.mongodb.net/")
+#myclient = MongoClient("mongodb://admin:admin123@104.211.247.221:27017/")
 mydb = myclient["qapp"]
 userTable = mydb["User"]
 siteTable = mydb["Site"]
@@ -96,8 +100,7 @@ def getUser(page:int = 1, limit:int = 10, token: str = Depends(tokenAuthScheme))
     verifyToken(token)
     skip = (page - 1)*limit 
     data = list(userTable.find({"isActive":True,"isAdmin":False}).limit(limit).skip(skip)) 
-    for el in data:
-        el["_id"] = str(el["_id"])
+    data = jsonable_encoder(data)
         #sif el.get("sites") and len(el.get("sites")) > 0:
             #sel["sites"] = siteTable.find({"_id":{"$in":el["sites"]}})
     return {"success":True,"data":data}
@@ -167,7 +170,7 @@ def getSite(page:int = 1, limit:int = 10, token: str = Depends(tokenAuthScheme))
     verifyToken(token)
     skip = (page - 1)*limit
     print(skip)
-    data = list(siteTable.find({"isActive":True}).limit(limit).skip(skip)) 
+    data = list(siteTable.find({"isActive":True},{"name":1,"code":1,"address":1,"latitude":1,"longitude":1,"province":1,"municipality":1}).limit(limit).skip(skip)) 
     for el in data:
         el["_id"] = str(el["_id"])
     return {"success":True,"data":data}
@@ -233,9 +236,25 @@ def uploadOnBlob(file:UploadFile, token: str = Depends(tokenAuthScheme)):
     sas_url = f"{blob.url}?{sas_token}" 
     return {"success":True,"data":{"fileUrl":sas_url}}
 
+@router.get("/qn-ans/pdf/{id}",tags=["QA"])
+async def generatePDF(id:str):
+    fileEnv = Environment(loader=FileSystemLoader('.')) 
+    template = fileEnv.get_template("./mainApp/PDFPlain.html")
+    templateData = questionAnswersTable.find_one({"_id":ObjectId(id)})
+    html_string = template.render(templateData) 
+    try:
+        await pdfkit.from_string(html_string,f"/files/{id}-out.pdf")
+    except Exception as ex:
+        print("ex",ex)   
+    return FileResponse(f"/files/{id}-out.pdf",status_code=200,media_type="application/pdf")
+
+
 def verifyToken(token:str):
     unAuthError = HTTPException(status_code="401",detail="Invalid token or expired!!!")
-    userId = JWT().decrypt(token.credentials)
+    try:
+        userId = JWT().decrypt(token.credentials)
+    except Exception as ex:
+        raise unAuthError
     if not userId or not userId.get("id"):
         raise unAuthError
     userData = userTable.find_one({"_id":ObjectId(userId.get("id"))})

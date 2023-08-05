@@ -1,0 +1,2432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <style>
+        body {
+  background: #FFF7F5;
+}
+
+.baseWrapper {
+  height: auto;
+  background: rgba(255, 255, 255, 0.5);
+  width: 750px;
+  padding: 10px 20px 10px 20px;
+  margin: 0 auto;
+}
+
+.card-body {
+  padding: 12px;
+}
+
+.card-ele-row {
+  margin-bottom: 10px;
+}
+
+.card-title {
+  margin-bottom: 0;
+}
+.title{
+    padding: 20px 10px;
+}
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="container px-2"> 
+            <div class="col-lg-12 baseWrapper" id="pdfWrap">
+                <div class="col-lg-12">
+                    <div class="row d-flex">
+                        <h6 class="title">AIDROM</h6>
+                    </div>
+                </div>
+                <div class="col-lg-12" id="renderQuestion">
+                    
+                <div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">1) Is the information mentioned above, correct?<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">2) Details of Corrections required<p class="card-text text-success fw-bold">{{Q2}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">3) Site Category<p class="card-text text-success fw-bold">{{Q3}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">4) Your remarks on Site type<p class="card-text text-success fw-bold">{{Q4}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">5) Site Location<p class="card-text text-success fw-bold">{{Q5}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">6) Site Vicinity<p class="card-text text-success fw-bold">{{Q6}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">7) Site Terrain<p class="card-text text-success fw-bold">{{Q7}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">8) Site Terrain Access<p class="card-text text-success fw-bold">{{Q8}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">9) Site Terrain Access Slope<p class="card-text text-success fw-bold">{{Q9}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">10) Site Accessibility<p class="card-text text-success fw-bold">{{Q10}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">11) Site Flood Prone/On Low lying land<p class="card-text text-success fw-bold">{{Q11}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">12) Remarks about possible waterlogging /flood at site<p class="card-text text-success fw-bold">{{Q12}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">13) Site High Security Risk Area<p class="card-text text-success fw-bold">{{Q13}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">14) Why is a high security risk area (Vip, bad law &amp; order, theft prone, army cantt etc)<p class="card-text text-success fw-bold">{{Q14}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">15) Nearest Telecom Tower in the vicinity<p class="card-text text-success fw-bold">{{Q15}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">16) Towerco/Operator owning/using the nearest tower, in case known<p class="card-text text-success fw-bold">{{Q16}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">17) Type of Perimeter Fence/ Parapet of RTT<p class="card-text text-success fw-bold">{{Q17}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">18) Perimeter Fence Remarks, if any<p class="card-text text-success fw-bold">{{Q18}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">19) Are their any deficiencies in the Fencing/Boundary Wall<p class="card-text text-success fw-bold">{{Q19}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">20) State deficiencies in the Fencing/Boundary wall<p class="card-text text-success fw-bold">{{Q20}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">21) Does Boundray Wall / paparapet of site meet HSE requirements<p class="card-text text-success fw-bold">{{Q21}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">22) State deficiencies with reference to HSE standards of the Company<p class="card-text text-success fw-bold">{{Q22}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">23) Appx. Distance of Access Gate from nearest point on Road  where vehicle can be driven to: (in M)<p class="card-text text-success fw-bold">{{Q23}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">24) Site Access Approach (Any structural/hygiene/safety Issue in Access to site, if any)<p class="card-text text-success fw-bold">{{Q24}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">25) Vehicle Type Accessibility<p class="card-text text-success fw-bold">{{Q25}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">26) Access Gate Type<p class="card-text text-success fw-bold">{{Q26}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">27) Access Gate Status/ Remarks<p class="card-text text-success fw-bold">{{Q27}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">28) Padlock Availability at the Access gate<p class="card-text text-success fw-bold">{{Q28}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">29) Type of Padlock<p class="card-text text-success fw-bold">{{Q29}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">30) Site Gate Locking Mechanism E-Lock Compatible<p class="card-text text-success fw-bold">{{Q30}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">31) Perimeter Light Type<p class="card-text text-success fw-bold">{{Q31}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">32) Count of Perimeter Light<p class="card-text text-success fw-bold">{{Q32}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">33) Availability of Grid Power Connection <p class="card-text text-success fw-bold">{{Q33}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">34) Issues related to Permanent Power, if any<p class="card-text text-success fw-bold">{{Q34}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">35) Power Connection Type<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">36) DU/ Elec Coop Name<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">37) EB supply<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">38) No. of Transformers/ Remarks<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">39) Transformer Capacity (KVA)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">40) Distance (in M) from site to possible AC tapping point for the Commercial Power(Meter to ACDP)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">41) Sanctioned Site Load (AC)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">42) Actual Site Load (AC)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">43) Service Entrance Wire Size (Sqmm)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">44) Main KWH Meter No<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">45) KWHR Meter Reading<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">46) Main ECB breaker brand/ rating<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">47) Electricity Bill (Write 'NA' if Not Available)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">48) Grid Availability @ site (no. of hours per day)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">49) Any weekly Scheduled downtime on grid<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">50) Availability of any Non-Conventional energy source<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">51) Capacity of Non Conventional energy Source<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">52) Plot Area (Sqm)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">53) Site Security<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">54) Dedicated Security guard availability<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">55) Guard room availability<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">56) Genset Room availability<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">57) Is it an illegally Captured site?<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">58) State why it is classified as captured ? ( State Issues pertaining to Diesel theft/ Electricity misuse/theft/entry illegally prohibited etc.)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">59) Site Layout<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">60) SLD for Electrical connections<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">61) Availability of Signage boards showing 'Danger' &amp; 'Radiation Area'<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">62) Additional outdoor space available for additional equipment on Ground /Terrace, especially DG/AMF, Outdoor Panels<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">63) What is the area of available free space (SqM)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">64) Is there any Issue from Owner for Expansion (Further tenancy adding)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">65) Is the site connected through OFC<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">66) Chamber for Fibre Connectivity inside the site or outside<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">67) Approximate distance of Fibre Chamber from the road ( m )<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">68) Fiber Chamber Status<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">69) Are there outdoor infrastructure components other than Tower &amp; DG (e.g- BTS, TMR, Battery Bank,Rectifier units etc. ) placed at site<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">70) No. of Out Door BTS<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">71) Space available for additional Out Door BTS outside shelter<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">72) Is OD cage Available<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">73) OD Cage Dimension<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">74) OD Cage Condition<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">75) Availability of external TMR<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">76) No. of towers @ site<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">77) Dismantling of additional tower committed to the lessor<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">78) Your remarks on number and height  of poles/towers :<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">79) Tower 1 Category<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">80) Height of the Building  excluding parapet height (M)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">81) Terrace Rights with lessee in case of RTT<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">82) Tower 1 Height in metres(Tower 1 is tower which is likely to be used in the long run)- in case there are two towers.<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">83) Describe 'Other type'<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">84) Tower 1 Structural type (Tower 1 is tower which is likely to be used in the long run)- in case there are two towers.<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">85) Tower 1  Material used<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">86) Height of tower foundation pedestal top from road level (M)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">87) Back Filling has been done?<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">88) Foundation Bolts/per Leg(Nos)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">89) Tower Base Width(m)- C/C between tower legs and not the width of the base<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">90) No. of Panels per face<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">91) Is the Panel height different over different heights<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">92) Height of Panels (Bottommost panel, in case of different panel heights)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">93) Quality of galvanizing/ any visible rusting of tower<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">94) Location of Rusted Members, if any<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">95) Welding/ Gas cutting/ enlargement of holes<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">96) If present, approx.location &amp; remarks<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">97) Lower sized bolts and nuts/ no thread projection at main joints - Approximate numbers<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">98) If present, approx.location &amp; remarks<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">99) Missing bolts and nuts - Approximate numbers<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">100) If present, approx.location &amp; remarks<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">101) Climbing Ladder<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">102) Does climbing ladder have a cage?<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">103) Comments on Climbing Ladder fixing at base<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">104) Vertical Cable Tray width (mm)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">105) Tower 2 Height in metres<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">106) Tower 2 Category<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">107) Describe Other type<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">108) Tower 2  Structural type<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">109) Tower 2  Material used<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">110) Tower 2 Observations if any<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">111) Overall Health of Tower remarks<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">112) M/W Antenna Quantity<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">113) M/W Antenna Dimension (M)/Placement details<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">114) Panel Antenna Quantity<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">115) Panel Antenna Dimension/Details<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">116) AAU Quantity<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">117) AAU Dimension/Placement<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">118) RRU Quantity<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">119) RRU Dimension<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">120) Antennae- Any Observations<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">121) OB Light<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">122) OB Light Remarks<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">123) Lightning Arrester<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">124) LA earthing available<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">125) LA Observations<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">126) Site Status I/c remarks<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">127) Any other observation pertaining to tower<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">128) Tower foundation Pedestal / Beam Condition - Cracks, if any<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">129) Tower Base Plate Grouting (Below the base plate)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">130) Tower Base Plate Grouting (Above the base plate)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">131) Shelter Foundation Condition - Cracks, if any<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">132) DG  Foundation Condition - Cracks, if any<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">133) OD Cage Pad/Foundation<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">134) Overall finishing of Civil Work<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">135) Earthing Type<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">136) No of Earth pits<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">137) Is earth pit  visible?<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">138) Is earth pit accessible?<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">139) Installation of insulated earth connection bars (EGB/IGB)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">140) Tower legs properly earthed<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">141) DG Neutal properly earthed<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">142) ACU properly earthed<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">143) Other equipment properly earthed<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">144) Earthing Observations<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">145) Is there an ATS or PIU at site?<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">146) ATS / PIU make at site<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">147) Capacity in KVA<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">148) Working Mode<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">149) ATS Rating (Amp)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">150) ATS Status<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">151) Any issue / deficiency in circuit<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">152) ATS Date Installed (if available)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">153) Any Observations on ATS/PIU<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">154) No. of Shelter/Equipment Room<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">155) Shelter Lock &amp; Key<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">156) Cabin Lock Type<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">157) Shelter Size Mtr Internal (Length X Breadth  X Height in Metres)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">158) Eqpt Room Shelter Type<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">159) Horizontal Cable Tray inside shelter/ connecting Shelter<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">160) Roxtec / Cable Entrance<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">161) Room Status (Flooring, Paint, Ceiling health)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">162) Shelter Defects, if any<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">163) Fire &amp; Smoke sensor<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">164) Door Sensor Available<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">165) No. of Indoor BTS<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">166) Space available inside the shelter for additional BTS<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">167) Availability of TMR inside Shelter<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">168) Amount of Free space available ( in U) - ( U = 125mm )<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">169) Is there a Fire Extinguisher inside the Shelter? (Y/N)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">170) Fire Extinguisher (inside Shelter)  Service Date<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">171) Is there a Fire Extinguisher outside the Shelter but at Site? (Y/N)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">172) Fire Extinguisher (outdoors/out of Shelter)  Service Date<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">173) Are thereone or more  airconditioner units fitted in Shelter/equipment room?<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">174) No. of Aircon<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">175) Airconditioner Type<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">176) Specify Air conditioner Make - Brand<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">177) AC Controller Status<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">178) HRT Sensor connected<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">179) ACU Capacity Rating(Hp)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">180) ACU Serial No<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">181) Any Observations on ACUs<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">182) Does the site have any Rectifier Units ?<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">183) No. of Rectifier Units at the site<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">184) Specify Rectifier Unit Make Brands<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">185) Rectifier Unit Cabinet(s) Serial No<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">186) No of Working Rectifier  modules available brandwise<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">187) Rating of  Working Rectifier modules , brandwise<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">188) No. of Defective/non- working Rectifier modules, brandwise<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">189) Rating of Defective/non- working Rectifier modules, brandwise<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">190) Vacant Module slots available, brandwise<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">191) Rectifier Unit Controller<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">192) Rectifier Unit Capacity Watts<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">193) Rectifier Unit AC Input Breaker<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">194) Rectifier Unit LLVD(Load Low Voltage Disconnect) &amp; BLVD(Battery Low Voltage Disconnect) Setting<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">195) Rectifier Unit Date Installed (if available)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">196) Site Load (DC)- Total<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">197) Site Load (DC)- Technology-1<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">198) Technology-Name<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">199) Site Load (DC)- Technology-2<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">200) Technology-Name<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">201) Site Load (DC)- Technology-3<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">202) Technology-Name<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">203) Does the site have functional Battery Bank?<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">204) No. of  Battery Rack(s)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">205) No. of VRLA-BB<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">206) Brand of VRLA BB<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">207) No. of VRLA Cells- Brandwise<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">208) Capacity of each VRLA BB (AH)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">209) Total Capacity of VRLA BB (AH)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">210) VRLA Battery Bank Date Installed (if available)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">211) No. of Li - BB<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">212) Brand of Li-BB<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">213) Capacity of each Li Ion BB (AH)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">214) Total Capacity of Li Ion BB (AH)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">215) LI Battery Bank date of Installation (If Available)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">216) Status of Battery Cell Remarks<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">217) No of working DGs at the site<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">218) Specify DG Make- Brand for each DG<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">219) Genset Date Installed<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">220) DG Rating - KVA for each DG<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">221) DG run Hours as per Meter (or) Log Book<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">222) Engine Type<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">223) DG Fuel Tank size in ltr<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">224) Fuel Tank  Status- DG tank<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">225) Current Fuel Stocks(Liters)- DG tank<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">226) Current Fuel Stocks(Liters)- day Tank<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">227) With Fuel Line ?<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">228) With Auto Return Line?<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">229) DG working condition<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">230) DG- Neutral Earthing Status<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">231) With Genset Permit to Operate? (Y/N)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">232) DG Battery Condition<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">233) DG controlled by<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">234) Any external tapping of connection from DG witnessed<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">235) Any Spillage around DG Witnessed<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">236) Extra (Functional) Fuel Tank Size in Ltr (Day Tank)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">237) Extra Functional Fuel Tank  Status ( Day tank)<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">238) Extra unusable DG Day tanks lying at site<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">239) Unusable DGs lying at site-Make &amp; capacity<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">240) Any other observation on DG<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">241) Is the site connected with a NOC through RMS?<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">242) RMS/RFMS Alarm Status verified connected at NOC?<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">243) RMS Data Transmission<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">244) Mains Failure Alarm<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">245) DG Alarms Testing done<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">246) High Temperature Alarm<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">247) Low Voltage Alarm<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">248) Rectifier Unit Module Alarm<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">249) Distribution Unit Fuse Fail<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">250) High System Voltage Alarm<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">251) Fire &amp; smoke sensor Alarm<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">252) Door Sensor Alarm<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">253) Extra unused old/new Material (Active/Passive Infra) lying at site<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">254) Old non functional BER DG lying at site<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">255) Old non functional BER AC lying at site<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">256) Extra Tower Material Lying at site<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">257) Non functional Rectifier Modules/ Rectifier Units lying at site<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">258) Non functional PIU/ ATS Lying at site<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">259) Non functional Battery Banks Lying at site<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">260) Extra Unconnected Active EquipmentLying at site<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">261) Other materials at site required to be removed<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">262) Site Hygiene Condition<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">263) Any other remarks which has been missed<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row card-ele-row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">264) Do you want to submit the data finally. Please note any changes after data submission shall require approval from App administrator.<p class="card-text text-success fw-bold">{{Q1}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
