@@ -179,8 +179,7 @@ def getSite(page:int = 1, limit:int = 10, token: str = Depends(tokenAuthScheme))
 @router.get("/site/user-mapped/{id}",tags=["Site"])
 def getSite(id:str, token: str = Depends(tokenAuthScheme)):
     verifyToken(token)  
-    data = list(userTable.find({"isAdmin":False},{"_id":1,"name":1,"sites":True}))
-    print("data",data) 
+    data = list(userTable.find({"isAdmin":False},{"_id":1,"name":1,"sites":True})) 
     for el in data:  
         el["_id"] = str(el["_id"])
         if el.get("sites"):
@@ -215,8 +214,7 @@ def addQans(body:dict, token: str = Depends(tokenAuthScheme)):
 @router.get("/qn-ans",tags=["QA"])
 def getQuestionAnswer(page:int = 1, limit:int = 10, token: str = Depends(tokenAuthScheme)):
     verifyToken(token)
-    skip = (page - 1)*limit
-    print(skip)
+    skip = (page - 1)*limit 
     data = list(questionAnswersTable.find({"isActive":True}).limit(limit).skip(skip)) 
     for el in data:
         el["_id"] = str(el["_id"])
