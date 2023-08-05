@@ -72,7 +72,7 @@ def login(user:Login):
 
 @router.post("/user",tags=["User"])
 def addUser(user:User, token: str = Depends(tokenAuthScheme)):
-    #userData = verifyToken(token)
+    userData = verifyToken(token)
     checkExist = userTable.find_one({"$or":[{"mobile":user.mobile},{"email":user.email}]})
     if checkExist:
         raise HTTPException(status_code=422,detail="Email or Mobile already exist")
@@ -87,8 +87,8 @@ def addUser(user:User, token: str = Depends(tokenAuthScheme)):
         "createdAt":datetime.now(),
         "isAdmin":True,
         "password":user.password,
-        "sites":[]
-        #"createdBy":userData.get("_id")
+        "sites":[],
+        "createdBy":userData.get("_id")
     }
     #user["isActive"] = True 
     userTable.insert_one(dataToInsert)
@@ -99,10 +99,11 @@ def addUser(user:User, token: str = Depends(tokenAuthScheme)):
 def getUser(page:int = 1, limit:int = 10, token: str = Depends(tokenAuthScheme)): 
     verifyToken(token)
     skip = (page - 1)*limit 
-    data = list(userTable.find({"isActive":True,"isAdmin":False}).limit(limit).skip(skip)) 
-    data = jsonable_encoder(data)
-        #sif el.get("sites") and len(el.get("sites")) > 0:
-            #sel["sites"] = siteTable.find({"_id":{"$in":el["sites"]}})
+    data = list(userTable.find({"isActive":True,"isAdmin":False},{"name":1, "gender":1 ,"dept":1 ,"designation":1, "mobile":1, "email":1, "createdAt":1,"sites":1}).limit(limit).skip(skip))  
+    for el in data:
+        el["_id"] = str(el["_id"])
+        if el.get("sites") and len(el.get("sites")) > 0:
+            el["sites"] = siteTable.find({"_id":{"$in":el["sites"]}})
     return {"success":True,"data":data}
 
 @router.put("/user/{id}",tags=["User"])
