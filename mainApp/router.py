@@ -52,7 +52,8 @@ class Site(BaseModel):
 
 class SiteMapping(BaseModel):
     id: str
-    userIds: list  
+    userIds: list
+    removedUserIds: list
 
 def authCheck(token:str):
     if not token:
@@ -191,15 +192,26 @@ def getSite(id:str, token: str = Depends(tokenAuthScheme)):
 @router.post("/site/user-mapping",tags=["Site"])
 def userSiteMapping(site:SiteMapping, token: str = Depends(tokenAuthScheme)):
     userData = verifyToken(token)
-    dataToUpdate = {
-        "$addToSet":{"sites":site.id},
-        "$set":{
-            "updatedAt": datetime.now(),
-            "updatedBy": userData.get("_id")
+    if len(site.userIds):
+        dataToUpdate = {
+            "$addToSet":{"sites":site.id},
+            "$set":{
+                "updatedAt": datetime.now(),
+                "updatedBy": userData.get("_id")
+            }
+        } 
+        userIds = [ObjectId(el) for el in site.userIds] 
+        userTable.update_many({"_id":{"$in":userIds}},dataToUpdate) 
+    if len(site.removedUserIds):
+        removedUserIds = [ObjectId(el) for el in site.removedUserIds]
+        dataToUpdateRemove = {
+            "$pull":{"sites":site.id},
+            "$set":{
+                "updatedAt": datetime.now(),
+                "updatedBy": userData.get("_id")
+            }
         }
-    } 
-    userIds = [ObjectId(el) for el in site.userIds] 
-    userTable.update_many({"_id":{"$in":userIds}},dataToUpdate) 
+        userTable.update_many({"_id":{"$in":removedUserIds}},dataToUpdateRemove)
     return {"success":True,"data":"Site Mapping Success"}
 
 @router.post("/qn-ans",tags=["QA"])
