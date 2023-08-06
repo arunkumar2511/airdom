@@ -2,9 +2,9 @@ from fastapi import UploadFile,APIRouter,HTTPException,Request,Depends,File
 from fastapi.security import HTTPBearer
 from pydantic import BaseModel
 from pymongo import MongoClient
-from datetime import datetime
+from datetime import datetime,timedelta
 from bson import ObjectId
-from azure.storage.blob import BlobClient,generate_blob_sas
+from azure.storage.blob import BlobClient,generate_blob_sas,BlobSasPermissions
 from fastapi.encoders import jsonable_encoder
 import os
 import pdfkit
@@ -244,10 +244,11 @@ def getgetQuestionAnswerById(id, token: str = Depends(tokenAuthScheme)):
 @router.post("/blob/upload",tags=["QA"])
 def uploadOnBlob(file:UploadFile, token: str = Depends(tokenAuthScheme)):  
     verifyToken(token)
-    blobName = f"{datetime.now().timestamp()}-{file.filename}"
+    filename = file.filename
+    blobName = f"{datetime.now().timestamp()}-{filename}"
     blob = BlobClient.from_connection_string(conn_str=connectionString, container_name=containerName, blob_name=blobName) 
     blob.upload_blob(file.file) 
-    sas_token = generate_blob_sas(blob_name=blobName,account_name=accountName, container_name=containerName,account_key=accountKey)
+    sas_token = generate_blob_sas(blob_name=blobName,account_name=accountName, container_name=containerName,account_key=accountKey,permission=BlobSasPermissions(read=True),expiry=datetime.utcnow() + timedelta(days=300))
     sas_url = f"{blob.url}?{sas_token}" 
     return {"success":True,"data":{"fileUrl":sas_url}}
 
