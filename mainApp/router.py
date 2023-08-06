@@ -19,8 +19,8 @@ accountKey = os.getenv("accountKey")
 containerName = os.getenv("containerName")
 connectionString = f"DefaultEndpointsProtocol=https;AccountName={accountName};AccountKey={accountKey};EndpointSuffix=core.windows.net"   
 router = APIRouter()
-#myclient = MongoClient("mongodb+srv://arunkumardev2511:ag0x27igJALeaPr4@cluster0.mirxmsy.mongodb.net/")
-myclient = MongoClient("mongodb://admin:admin123@104.211.247.221:27017/")
+myclient = MongoClient("mongodb+srv://arunkumardev2511:ag0x27igJALeaPr4@cluster0.mirxmsy.mongodb.net/")
+#myclient = MongoClient("mongodb://admin:admin123@104.211.247.221:27017/")
 mydb = myclient["qapp"]
 userTable = mydb["User"]
 siteTable = mydb["Site"]
@@ -63,10 +63,21 @@ def authCheck(token:str):
 def login(user:Login):
     password = user.password
     username = user.username 
-    userData = userTable.find_one({"isActive":True,"mobile":username,"password":password})
+    userData = userTable.find_one({"isActive":True,"mobile":username,"password":password},{
+        "name":1,
+        "gender":1,
+        "dept":1,
+        "designation":1,
+        "mobile":1,
+        "email":1,   
+        "password":1,
+        "sites":1,
+    })
     if not userData:
         raise HTTPException(status_code=403,details="Incorrect username or password")
     userData["_id"] = str(userData.get("_id"))
+    if userData.get("sites") and len(userData.get("sites")) > 0:
+        userData["sites"] = siteTable.find({"_id":{"$in":userData["sites"]}})
     token = JWT().encrypt({"id":str(userData.get("_id"))})
 
     return {"success":True,"data":{"token":token,"user":userData}}
@@ -86,7 +97,7 @@ def addUser(user:User, token: str = Depends(tokenAuthScheme)):
         "email":user.email,
         "isActive":True,
         "createdAt":datetime.now(),
-        "isAdmin":True,
+        "isAdmin":False,
         "password":user.password,
         "sites":[],
         "createdBy":userData.get("_id")
@@ -231,8 +242,9 @@ def getQuestionAnswer(page:int = 1, limit:int = 10, token: str = Depends(tokenAu
     data = list(questionAnswersTable.find({"isActive":True}).limit(limit).skip(skip)) 
     for el in data:
         el["_id"] = str(el["_id"])
-        el["createdBy"] = str(el["createdBy"])  
-        el["updatedBy"] = str(el["updatedBy"]) 
+        el["createdBy"] = str(el["createdBy"]) 
+        if el.get("updatedBy"): 
+            el["updatedBy"] = str(el["updatedBy"]) 
     return {"success":True,"data":data}
 
 @router.get("/qn-ans/{id}",tags=["QA"])
@@ -259,10 +271,10 @@ async def generatePDF(id:str):
     templateData = questionAnswersTable.find_one({"_id":ObjectId(id)})
     html_string = template.render(templateData) 
     try:
-        await pdfkit.from_string(html_string,f"/files/{id}-out.pdf")
+        await pdfkit.from_string(html_string,f"files/{id}-out.pdf")
     except Exception as ex:
         print("ex",ex)   
-    return FileResponse(f"/files/{id}-out.pdf",status_code=200,media_type="application/pdf")
+    return FileResponse(f"files/{id}-out.pdf",status_code=200,media_type="application/pdf")
 
 
 def verifyToken(token:str):
