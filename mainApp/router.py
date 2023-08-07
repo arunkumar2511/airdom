@@ -77,7 +77,8 @@ def login(user:Login):
         raise HTTPException(status_code=403,details="Incorrect username or password")
     userData["_id"] = str(userData.get("_id"))
     if userData.get("sites") and len(userData.get("sites")) > 0:
-        userData["sites"] = siteTable.find({"_id":{"$in":userData["sites"]}})
+        siteIds =[ObjectId(el) for el in userData["sites"]]
+        userData["sites"] = siteTable.find({"_id":{"$in":siteIds}})
     token = JWT().encrypt({"id":str(userData.get("_id"))})
 
     return {"success":True,"data":{"token":token,"user":userData}}
@@ -115,7 +116,10 @@ def getUser(page:int = 1, limit:int = 10, token: str = Depends(tokenAuthScheme))
     for el in data:
         el["_id"] = str(el["_id"])
         if el.get("sites") and len(el.get("sites")) > 0:
-            el["sites"] = siteTable.find({"_id":{"$in":el["sites"]}})
+            el["sites"] = siteTable.find({"_id":{"$in":el["sites"]}},{"name":1,"code":1,"address":1,"latitude":1,"longitude":1,"province":1,"municipality":1})
+            if len(el["sites"]) > 0:
+                for item in el["sites"]:
+                    item["_id"] = str(item["_id"])
     return {"success":True,"data":data}
 
 @router.put("/user/{id}",tags=["User"])
@@ -186,6 +190,7 @@ def getSite(page:int = 1, limit:int = 10, token: str = Depends(tokenAuthScheme))
     data = list(siteTable.find({"isActive":True},{"name":1,"code":1,"address":1,"latitude":1,"longitude":1,"province":1,"municipality":1}).limit(limit).skip(skip)) 
     for el in data:
         el["_id"] = str(el["_id"])
+        el["userMappedCount"] = userTable.count_documents({"sites":ObjectId(el["_id"])})
     return {"success":True,"data":data}
 
 @router.get("/site/user-mapped/{id}",tags=["Site"])
@@ -275,8 +280,8 @@ def generatePDF(id:str):
     templateData = questionAnswersTable.find_one({"_id":ObjectId(id)})
     html_string = template.render(templateData) 
     try:
-        pdfkit.from_string(html_string,f"files/{id}-out.pdf")
-        print(f"pdf generation done for {id}")
+        data = pdfkit.from_string(html_string,f"files/{id}-out.pdf")
+        print(f"pdf generation done for {id}",data)
     except Exception as ex:
         print("error while upload pdf ==>",ex)   
     return FileResponse(f"files/{id}-out.pdf",status_code=200,media_type="application/pdf")
