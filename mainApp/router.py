@@ -251,6 +251,10 @@ def getQuestionAnswer(page:int = 1, limit:int = 10, token: str = Depends(tokenAu
 def getgetQuestionAnswerById(id, token: str = Depends(tokenAuthScheme)):  
     verifyToken(token)
     data = dict(questionAnswersTable.find_one({"_id":ObjectId(id),"isActive":True}))  
+    data["_id"] = str(data["_id"])
+    data["createdBy"] = str(data["createdBy"]) 
+    if data.get("updatedBy"): 
+        data["updatedBy"] = str(data["updatedBy"]) 
     return {"success":True,"data":data}
 
 @router.post("/blob/upload",tags=["QA"])
@@ -265,15 +269,16 @@ def uploadOnBlob(file:UploadFile, token: str = Depends(tokenAuthScheme)):
     return {"success":True,"data":{"fileUrl":sas_url}}
 
 @router.get("/qn-ans/pdf/{id}",tags=["QA"])
-async def generatePDF(id:str):
+def generatePDF(id:str):
     fileEnv = Environment(loader=FileSystemLoader('.')) 
     template = fileEnv.get_template("./mainApp/PDFPlain.html")
     templateData = questionAnswersTable.find_one({"_id":ObjectId(id)})
     html_string = template.render(templateData) 
     try:
-        await pdfkit.from_string(html_string,f"files/{id}-out.pdf")
+        pdfkit.from_string(html_string,f"files/{id}-out.pdf")
+        print(f"pdf generation done for {id}")
     except Exception as ex:
-        print("ex",ex)   
+        print("error while upload pdf ==>",ex)   
     return FileResponse(f"files/{id}-out.pdf",status_code=200,media_type="application/pdf")
 
 
