@@ -78,7 +78,9 @@ def login(user:Login):
     userData["_id"] = str(userData.get("_id"))
     if userData.get("sites") and len(userData.get("sites")) > 0:
         siteIds =[ObjectId(el) for el in userData["sites"]]
-        userData["sites"] = siteTable.find({"_id":{"$in":siteIds}})
+        userData["sites"] = siteTable.find({"_id":{"$in":siteIds}},{"name":1,"code":1,"address":1,"latitude":1,"longitude":1,"province":1,"municipality":1})
+        for item in userData["sites"]:
+            item["_id"] = str(item["_id"])
     token = JWT().encrypt({"id":str(userData.get("_id"))})
 
     return {"success":True,"data":{"token":token,"user":userData}}
@@ -116,7 +118,7 @@ def getUser(page:int = 1, limit:int = 10, token: str = Depends(tokenAuthScheme))
     for el in data:
         el["_id"] = str(el["_id"])
         if el.get("sites") and len(el.get("sites")) > 0:
-            el["sites"] = siteTable.find({"_id":{"$in":el["sites"]}},{"name":1,"code":1,"address":1,"latitude":1,"longitude":1,"province":1,"municipality":1})
+            el["sites"] = list(siteTable.find({"_id":{"$in":el["sites"]}},{"name":1,"code":1,"address":1,"latitude":1,"longitude":1,"province":1,"municipality":1}))
             if len(el["sites"]) > 0:
                 for item in el["sites"]:
                     item["_id"] = str(item["_id"])
@@ -190,7 +192,7 @@ def getSite(page:int = 1, limit:int = 10, token: str = Depends(tokenAuthScheme))
     data = list(siteTable.find({"isActive":True},{"name":1,"code":1,"address":1,"latitude":1,"longitude":1,"province":1,"municipality":1}).limit(limit).skip(skip)) 
     for el in data:
         el["_id"] = str(el["_id"])
-        el["userMappedCount"] = userTable.count_documents({"sites":ObjectId(el["_id"])})
+        el["userMappedCount"] = userTable.count_documents({"sites":el["_id"]})
     return {"success":True,"data":data}
 
 @router.get("/site/user-mapped/{id}",tags=["Site"])
