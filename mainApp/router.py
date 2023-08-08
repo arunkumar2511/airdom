@@ -74,11 +74,12 @@ def login(user:Login):
         "sites":1,
     })
     if not userData:
-        raise HTTPException(status_code=403,details="Incorrect username or password")
+        raise HTTPException(status_code=403,detail="Incorrect username or password")
     userData["_id"] = str(userData.get("_id"))
     if userData.get("sites") and len(userData.get("sites")) > 0:
         siteIds =[ObjectId(el) for el in userData["sites"]]
-        userData["sites"] = siteTable.find({"_id":{"$in":siteIds}},{"name":1,"code":1,"address":1,"latitude":1,"longitude":1,"province":1,"municipality":1})
+        print("siteIds",siteIds)
+        userData["sites"] = list(siteTable.find({"_id":{"$in":siteIds}},{"name":1,"code":1,"address":1,"latitude":1,"longitude":1,"province":1,"municipality":1}))
         for item in userData["sites"]:
             item["_id"] = str(item["_id"])
     token = JWT().encrypt({"id":str(userData.get("_id"))})
@@ -241,6 +242,14 @@ def addQans(body:dict, token: str = Depends(tokenAuthScheme)):
     body["createdAt"]= datetime.now()
     questionAnswersTable.insert_one(body)
     return {"success":True,"data":"Answer Creation Success"}
+
+@router.put("/qn-ans/{id}",tags=["QA"])
+def addQans(body:dict, token: str = Depends(tokenAuthScheme)): 
+    userData = verifyToken(token) 
+    body["updatedBy"] = userData.get("_id") 
+    body["updatedAt"]= datetime.now()
+    questionAnswersTable.update_one({"_id":ObjectId(id)},{"$set":body})
+    return {"success":True,"data":"Answer Update Success"}
 
 @router.get("/qn-ans",tags=["QA"])
 def getQuestionAnswer(page:int = 1, limit:int = 10, token: str = Depends(tokenAuthScheme)):
