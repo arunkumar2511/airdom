@@ -299,7 +299,7 @@ def generatePDF(id:str):
 
 
 def verifyToken(token:str):
-    unAuthError = HTTPException(status_code="401",detail="Invalid token or expired!!!")
+    unAuthError = HTTPException(status_code=401,detail="Invalid token or expired!!!")
     try:
         userId = JWT().decrypt(token.credentials)
     except Exception as ex:
